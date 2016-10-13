@@ -12,27 +12,38 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+/*Map Reduce 2
+ *  Count number of first name by number of origin
+ *   Ex : How many first name has x origins ?
+ * 
+ * Output each numbers of origins possible with the number of first name that have this number
+ */
+
 public class NumberByOrigin {
 
   public static class TokenizerMapper
        extends Mapper<Object, Text, Text, IntWritable>{
 
     private final static IntWritable one = new IntWritable(1);
-    private Text word = new Text();
+    private Text numberOfOrigins = new Text();
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
     	
+		// Split each input by ";" and retrieve the splitted string in an Array
     	String[] parts = value.toString().split(";");
+		// Remove all the space in the string
+
 	    String origins = parts[2].replaceAll("\\s+","");
 	    
-	  	
+		// Split the origin by coma ","
+
 	    StringTokenizer itr = new StringTokenizer(origins, ",");
-	    Text numberOfOrigins = new Text(); 
+	    
+	    //Count the number of origins (number of token)
 	    numberOfOrigins.set(Integer.toString(itr.countTokens()));
-	    
+		// Each number of origins is a key with a value 1
 	    context.write(numberOfOrigins, one);
-	    
 	   
       
     }
@@ -45,6 +56,9 @@ public class NumberByOrigin {
     public void reduce(Text key, Iterable<IntWritable> values,
                        Context context
                        ) throws IOException, InterruptedException {
+    	
+	//Reduce with a summation of the value for each key
+
       int sum = 0;
       for (IntWritable val : values) {
         sum += val.get();
