@@ -1,0 +1,11 @@
+mercier_daoud\mapReduce\App.class
+mercier_daoud\mapReduce\Proportion$TokenizerMapper.class
+mercier_daoud\mapReduce\NumberByOrigin$TokenizerMapper.class
+mercier_daoud\mapReduce\FirstNameByOrigin$TokenizerMapper.class
+mercier_daoud\mapReduce\Proportion$TestCounters.class
+mercier_daoud\mapReduce\FirstNameByOrigin$IntSumReducer.class
+mercier_daoud\mapReduce\Proportion$IntSumReducer.class
+mercier_daoud\mapReduce\FirstNameByOrigin.class
+mercier_daoud\mapReduce\Proportion.class
+mercier_daoud\mapReduce\NumberByOrigin$IntSumReducer.class
+mercier_daoud\mapReduce\NumberByOrigin.class
